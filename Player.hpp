@@ -1,7 +1,5 @@
 #pragma once
 
-#include <map>
-
 class Player
 {
 public:
@@ -13,14 +11,20 @@ public:
 	void update();
 	int getPositionX() const;
 	int getPositionY() const;
-	void setPositionX(int t_posX);
-	void setPositionY(int t_posY);
-	void setPosition(int t_posX, int t_posY);
+	void setPositionX(const int& t_posX);
+	void setPositionY(const int& t_posY);
+	int getHealthPoint() const;
+	void setHealthPoint(const int& t_healthPoint);
+	int getAttackPoint() const;
+	void setAttackPoint(const int& t_attackPoint);
+	void reportStatus() const;
+
+	bool isDead = false;
 
 private:
 	int posX;
 	int posY;
 
 	int m_healthPoint;
-	int m_inventory;
+	int m_attackPoint;
 };

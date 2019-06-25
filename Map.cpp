@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <Windows.h>
 
 Map::Map() :
 	m_width(5),
@@ -21,20 +22,20 @@ Map::~Map()
 }
 
 bool Map::init() {
-
 	return Map::loadMap();
 }
 
 void Map::update() {
-	std::cout << "|--------------------|" << std::endl;
-	std::cout << "|....................|" << std::endl;
-	std::cout << "|..............M.....|" << std::endl;
-	std::cout << "|....................|" << std::endl;
-	std::cout << "|--------------------|" << std::endl;
+	COORD coordZero = { 0, 0 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordZero);
+	for (auto it = m_map.begin(); it != m_map.end(); ++it) {
+		//if (*it->find('D')) {}
+		std::cout << *it << std::endl;
+	}
 }
 
 void Map::destroy() {
-
+	m_map.clear();
 }
 
 bool Map::loadMap() {

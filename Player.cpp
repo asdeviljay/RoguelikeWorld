@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "Player.hpp"
-#include "utility.hpp"
 #include <iostream>
-
+#include <Windows.h>
 
 Player::Player() :
 	posX(2),
-	posY(2)
+	posY(2),
+	m_healthPoint(10),
+	m_attackPoint(1)
 {
 }
 
@@ -17,8 +18,14 @@ Player::~Player()
 
 
 void Player::update() {
-	gotoxy(posX, posY);
-	std::cout << "P";
+	COORD coord = { static_cast<short>(posX), static_cast<short>(posY) };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	if (m_healthPoint != 0) {
+		std::cout << "P";
+	}
+	else {
+		isDead = true;
+	}
 }
 
 int Player::getPositionX() const {
@@ -29,26 +36,45 @@ int Player::getPositionY() const {
 	return posY;
 }
 
-void Player::setPositionX(int t_posX) {
-	//std::cout << "Character = " << getCharxy(t_posX, posY);
-	if (getCharxy(t_posX, posY) == '.') {
-		posX = t_posX;
-	}
-	else if (getCharxy(t_posX, posY) == 'M') {
-		//Monster and Player get damaged
-	}
-}
-
-void Player::setPositionY(int t_posY) {
-	if (getCharxy(posX, t_posY) == '.') {
-		posY = t_posY;
-	}
-	else if (getCharxy(posX, t_posY) == 'M') {
-		//Monster and Player get damaged
-	}
-}
-
-void Player::setPosition(int t_posX, int t_posY) {
+void Player::setPositionX(const int& t_posX) {
 	posX = t_posX;
+}
+
+void Player::setPositionY(const int& t_posY) {
 	posY = t_posY;
+}
+
+int Player::getHealthPoint() const {
+	return m_healthPoint;
+}
+
+void Player::setHealthPoint(const int& t_healthPoint) {
+	if (t_healthPoint <= 0) {
+		m_healthPoint = 0;
+	}
+	else {
+		m_healthPoint = t_healthPoint;
+	}
+}
+
+int Player::getAttackPoint() const {
+	return m_attackPoint;
+}
+
+void Player::setAttackPoint(const int& t_attackPoint) {
+	m_attackPoint = t_attackPoint;
+}
+
+void Player::reportStatus() const {
+	COORD coord;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	coord = { csbi.srWindow.Left, csbi.srWindow.Bottom - 1 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	if (m_healthPoint != 0) {
+		std::cout << "HP : " << m_healthPoint << "\tAtt : " << m_attackPoint << std::endl;
+	}
+	else {
+		std::cout << "Game Over!" << std::endl;
+	}
 }

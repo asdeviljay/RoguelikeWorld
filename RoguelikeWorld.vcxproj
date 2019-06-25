@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CWGame.hpp" />
+    <ClInclude Include="Item.hpp" />
     <ClInclude Include="Map.hpp" />
     <ClInclude Include="Monster.hpp" />
     <ClInclude Include="pch.h" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CWGame.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="pch.cpp">

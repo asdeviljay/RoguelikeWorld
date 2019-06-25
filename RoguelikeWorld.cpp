@@ -5,7 +5,6 @@
 #include "CWGame.hpp"
 #include "Monster.hpp"
 #include <iostream>
-#include <map>
 
 #define _CRTDBG_MAP_ALLOC
 
@@ -22,17 +21,6 @@ int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	/*std::map<unsigned int, StrongMonsterPtr> monsters;
-	monsters.insert(std::make_pair(1, std::make_shared<Monster>()));
-	monsters.insert(std::make_pair(2, std::make_shared<Monster>()));	
-	monsters[4165468564]->print();*/
-
-	/*for (auto it = monsters.begin(); it != monsters.end(); ++it) {
-		it->second->print();
-	}*/
-
-	//std::cout << "WTF" << std::endl;
-
 	CWGame game;
 
 	if (!game.init()) {
@@ -40,6 +28,24 @@ int main()
 	}
 
 	while (true) {
+		if (game.isEnd) {
+			char c;
+			do {
+				std::cout << "Want to play again (y/n) : ";
+				std::cin >> c;
+			} while (c != 'y' && c != 'Y' && c != 'n' && c != 'N');
+			if (c == 'y' || c == 'Y') {
+				game.restartGame();
+				game = CWGame();
+				if (!game.init()) {
+					return 0;
+				}
+				continue;
+			}
+			else if (c == 'n' || c == 'N') {
+				break;
+			}
+		} 
 		game.update();
 	}
 
