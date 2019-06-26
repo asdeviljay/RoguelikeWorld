@@ -4,6 +4,7 @@ class Player
 {
 public:
 	Player();
+	Player(int t_posX, int t_posY, int t_healthPoint, int t_attackPoint);
 	~Player();
 	Player(const Player&) = default;
 	Player& operator= (const Player&) = default;

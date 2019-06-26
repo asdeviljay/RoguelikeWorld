@@ -12,7 +12,7 @@ public:
 	void takeDamage(const int& t_damage);
 	int doDamage() const;
 	void reportStatus() const;
-	bool comparePosition(const int& t_pPosX, const int& t_pPosY);
+	void changePosition(const int& t_pPosX, const int& t_pPosY);
 
 private:
 	int posX;

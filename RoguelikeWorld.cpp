@@ -3,17 +3,9 @@
 
 #include "pch.h"
 #include "CWGame.hpp"
-#include "Monster.hpp"
 #include <iostream>
 
 #define _CRTDBG_MAP_ALLOC
-
-/*class Monster {
-public:
-	void print() {
-		std::cout << "WTF" << std::endl;
-	}
-};*/
 
 typedef std::shared_ptr<Monster> StrongMonsterPtr;
 
@@ -21,23 +13,24 @@ int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	CWGame game;
+	CWGame* game = new CWGame();
 
-	if (!game.init()) {
+	if (!game->init()) {
 		return 0;
 	}
 
 	while (true) {
-		if (game.isEnd) {
+		if (game->isEnd) {
 			char c;
 			do {
 				std::cout << "Want to play again (y/n) : ";
 				std::cin >> c;
 			} while (c != 'y' && c != 'Y' && c != 'n' && c != 'N');
 			if (c == 'y' || c == 'Y') {
-				game.restartGame();
-				game = CWGame();
-				if (!game.init()) {
+				game->restartGame();
+				game = new CWGame();
+				system("CLS");
+				if (!game->init()) {
 					return 0;
 				}
 				continue;
@@ -46,10 +39,11 @@ int main()
 				break;
 			}
 		} 
-		game.update();
+		game->update();
 	}
 
-	game.destroy();
+	game->destroy();
+	delete game;
 }
 
 

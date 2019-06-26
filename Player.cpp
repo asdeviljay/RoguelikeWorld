@@ -11,6 +11,13 @@ Player::Player() :
 {
 }
 
+Player::Player(int t_posX, int t_posY, int t_healthPoint, int t_attackPoint) :
+	posX(t_posX),
+	posY(t_posY),
+	m_healthPoint(t_healthPoint),
+	m_attackPoint(t_attackPoint)
+{
+}
 
 Player::~Player()
 {

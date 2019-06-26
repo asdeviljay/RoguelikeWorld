@@ -1,0 +1,38 @@
+{
+  "player": {
+    "posX": 2,
+    "posY": 2,
+    "healthPoint": 10,
+    "attackPoint": 1
+  },
+  "monster": {
+    "0": {
+      "posX": 5,
+      "posY": 5,
+      "healthPoint": 10,
+      "attackPoint": 1
+    },
+    "1": {
+      "posX": 10,
+      "posY": 10,
+      "healthPoint": 5,
+      "attackPoint": 2
+    }
+  },
+  "item": {
+    "0": {
+      "posX": 1,
+      "posY": 12,
+      "itemType": "EQUIP",
+      "name": "Legendary Sword",
+      "para1": 7497121
+    },
+    "1": {
+      "posX": 22,
+      "posY": 1,
+      "itemType": "POTION",
+      "name": "Flask from Dark Soul",
+      "para1": 2
+    }
+  }
+}

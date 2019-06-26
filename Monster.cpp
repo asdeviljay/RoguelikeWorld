@@ -67,6 +67,7 @@ void Monster::reportStatus() const {
 	
 }
 
-bool Monster::comparePosition(const int& t_pPosX, const int& t_pPosY) {
-	return (posX == t_pPosX) && (posY == t_pPosY);
+void Monster::changePosition(const int& t_pPosX, const int& t_pPosY) {
+	posX += t_pPosX;
+	posY += t_pPosY;
 }
