@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <map>
+#include "nlohmann/json.hpp"
 
 class Map;
 

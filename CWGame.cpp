@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include "nlohmann/json.hpp"
 
 #define _CRT_SECURE_NO_WARNINGS
 
